@@ -1,17 +1,18 @@
 from playwright.sync_api import Page, expect
 from elements import HomePage
-from time import sleep
+from core.host import Host
+from test_data.youtube import TestData
 
 
 def test_has_logo(page: Page):
-    page.goto("https://www.youtube.com/")
+    page.goto(Host.Youtube)
 
     expect(page.locator(HomePage.LOGO)).to_be_visible()
 
 
 def test_search_element(page: Page):
-    page.goto("https://www.youtube.com/")
-    channelName = "P-chan band"
+    channelName = TestData.SearchChannel
+    page.goto(Host.Youtube)
     page.locator(HomePage.SEARCH_INPUT).fill(channelName)
     page.locator(HomePage.SEARCH_BUTTON).click()
     contentResults = page.locator(HomePage.CONTENT_RESULTS)

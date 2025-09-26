@@ -1,5 +1,3 @@
-
-
 class HomePage():
     LOGO = "ytd-topbar-logo-renderer#logo"
     SEARCH_INPUT = "input[name='search_query']"
