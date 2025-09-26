@@ -4,3 +4,5 @@ class HomePage():
     SEARCH_BUTTON = "button[title='Search']"
     CONTENT_RESULTS = "#contents.ytd-item-section-renderer"
     FIRS_CHANNEL = "ytd-channel-renderer:first-child"
+    FILTER_BUTTON = "button[aria-label='Search filters']"
+    TYPE_CHANNEL = "div[title='Search for Channel']"

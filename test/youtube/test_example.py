@@ -10,11 +10,27 @@ def test_has_logo(page: Page):
     expect(page.locator(HomePage.LOGO)).to_be_visible()
 
 
-def test_search_element(page: Page):
+def test_search(page: Page):
     channelName = TestData.SearchChannel
+
     page.goto(Host.Youtube)
     page.locator(HomePage.SEARCH_INPUT).fill(channelName)
     page.locator(HomePage.SEARCH_BUTTON).click()
+    contentResults = page.locator(HomePage.CONTENT_RESULTS)
+    firstChannelName = contentResults.locator(HomePage.FIRS_CHANNEL)
+
+    expect(firstChannelName.get_by_text(channelName).first) \
+        .to_have_text(channelName)
+
+
+def test_search_channel_filter(page: Page):
+    channelName = TestData.SearchChannel
+
+    page.goto(Host.Youtube)
+    page.locator(HomePage.SEARCH_INPUT).fill(channelName)
+    page.locator(HomePage.SEARCH_BUTTON).click()
+    page.locator(HomePage.FILTER_BUTTON).click()
+    page.locator(HomePage.TYPE_CHANNEL).click()
     contentResults = page.locator(HomePage.CONTENT_RESULTS)
     firstChannelName = contentResults.locator(HomePage.FIRS_CHANNEL)
 
